@@ -22,7 +22,7 @@ public class conexao {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    private conexao() {}
+    public conexao() {}
 
     public static conexao getConn() {
         if(conn == null) {
@@ -33,12 +33,9 @@ public class conexao {
     
     public Connection abrirConexao() {
        try {
-            // Carregar o driver JDBC para MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");  //DRIVER
-            // Estabelecer a conexão com o banco de dados
             conexao = DriverManager.getConnection(url, user, password); //BD
             conexao.setAutoCommit(false); 
-            //return conexao;
         } catch (SQLException | ClassNotFoundException e) {
             System.err.println("Erro ao conectar com o banco de dados: " + e.getMessage()); 
         }

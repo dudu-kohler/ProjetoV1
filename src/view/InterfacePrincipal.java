@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import model.clientes;
@@ -15,7 +17,7 @@ import view.InterfaceCadastrar;
  * @author eduardo
  */
 public class InterfacePrincipal extends javax.swing.JFrame {
-
+    dao DAO = new dao();
     private ArrayList<clientes> clientes;
 
     InterfacePrincipal(String login) {
@@ -24,9 +26,10 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         jPanel5.setVisible(false);
         setSize(577, 800);
         setResizable(false);
-        
+        setLocation(350, 0);
+
         try {
-            clientes = DAO.ListarClientes();
+            clientes = DAO.listarClientes();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -337,8 +340,6 @@ public class InterfacePrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel21.setIcon(new javax.swing.ImageIcon("C:\\Users\\pfeif\\Downloads\\LOGOTIPO ekor (2).png")); // NOI18N
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -534,8 +535,8 @@ public class InterfacePrincipal extends javax.swing.JFrame {
                     .addComponent(jbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3)
-                .addGap(10, 10, 10))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -561,9 +562,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -572,13 +571,18 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
         dao DAO = new dao();
-        DAO.consultarCliente();
+        try {
+            DAO.consultarCliente();
+        } catch (Exception ex) {
+            Logger.getLogger(InterfacePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_txtPesquisaActionPerformed
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {
         jPanel5.setVisible(true);
         setSize(1340, 800);
+        setLocation(15, 0);
     }
 
 
@@ -586,9 +590,8 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         InterfaceCadastrar icc = new InterfaceCadastrar();
         icc.setLocationRelativeTo(null);
         icc.setVisible(true);
-        
-        
-        
+
+
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
     private void txtRenavamBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRenavamBActionPerformed
@@ -666,8 +669,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
     private void BvoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BvoltarActionPerformed
         jPanel5.setVisible(false);
         setSize(577, 800);
-        setLocation(500,50);
-        
+        setLocation(350, 0);
     }//GEN-LAST:event_BvoltarActionPerformed
 
     /**
