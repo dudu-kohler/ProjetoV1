@@ -25,7 +25,7 @@ public class clientes {
     protected String vigenciaF;
     
 
-    public clientes(String nome, String cpfCnpj, String email, String telefone, String endereco, String rg, String dataN, String estadoC, String profissao, String cep, String seguradora, String apolice, String item, String placa, String chassi, String renavam, String utilizacao, String vigenciaF) {
+    public clientes(){ //String nome, String cpfCnpj, String email, String telefone, String endereco, String rg, String dataN, String estadoC, String profissao, String cep, String seguradora, String apolice, String item, String placa, String chassi, String renavam, String utilizacao, String vigenciaF) {
         super();
         this.nome = nome;
         this.cpfCnpj = cpfCnpj;

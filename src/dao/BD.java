@@ -11,12 +11,13 @@ public class BD {
 
     public static void main(String[] args) {
         try {
-            connection = conexao.getConn().abrirConexao();
-            System.out.println("Base criada com sucesso");
-            conexao.getConn().fecharConexao();
+            Connection connection = conexao.getConnection();
+            System.out.println("Conexão com o banco de dados estabelecida com sucesso!");
+            conexao.closeConnection(connection);
+            System.out.println("Conexão encerrada com sucesso!");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.exit(0);
+            System.err.println("Erro ao conectar ao banco de dados: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

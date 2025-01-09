@@ -561,7 +561,7 @@ public class InterfaceCadastrar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEnderecoActionPerformed
 
     private void JBincluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBincluirActionPerformed
-        clientes cliente = new clientes(new clientes(null, txtNome.getText(), txtTelefone.getText(), txtEmail.getText(), txtCPF.getText(), txtRG.getText(), txtDataDeNascimento.getText(), txtEstadoCivil.getText(), txtProfissao.getText(), txtEndereco.getText(), txtCep.getText(), txtSeguradora.getText(), txtApolice.getText(), txtItem.getText(), txtPlaca.getText(), txtChassi.getText(), txtRenavam.getText(), txtUtilizacao.getText()));
+        clientes cliente = new clientes(txtNome.getText(), txtTelefone.getText(), txtEmail.getText(), txtCPF.getText(), txtRG.getText(), txtDataDeNascimento.getText(), txtEstadoCivil.getText(), txtProfissao.getText(), txtEndereco.getText(), txtCep.getText(), txtSeguradora.getText(), txtApolice.getText(), txtItem.getText(), txtPlaca.getText(), txtChassi.getText(), txtRenavam.getText(), txtUtilizacao.getText());
         
         dispose();
         

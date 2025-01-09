@@ -18,6 +18,7 @@ import view.InterfaceCadastrar;
  */
 public class InterfacePrincipal extends javax.swing.JFrame {
     dao DAO = new dao();
+    clientes cliente = new clientes();
     private ArrayList<clientes> clientes;
 
     InterfacePrincipal(String login) {
@@ -595,11 +596,11 @@ public class InterfacePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
     private void txtRenavamBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRenavamBActionPerformed
-
+      //  clientes.getRenavam();
     }//GEN-LAST:event_txtRenavamBActionPerformed
 
     private void txtChassiBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChassiBActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtChassiBActionPerformed
 
     private void txtItemBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtItemBActionPerformed
