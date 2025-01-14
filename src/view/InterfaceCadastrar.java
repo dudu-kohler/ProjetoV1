@@ -5,7 +5,8 @@ import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import static java.lang.reflect.Array.set;
 import model.clientes;
-
+import dao.dao;
+import javax.swing.JOptionPane;
 /**
  *
  * @author eduardo
@@ -561,11 +562,15 @@ public class InterfaceCadastrar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEnderecoActionPerformed
 
     private void JBincluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBincluirActionPerformed
+        dao DAO = new dao();
         clientes cliente = new clientes(txtNome.getText(), txtTelefone.getText(), txtEmail.getText(), txtCPF.getText(), txtRG.getText(), txtDataDeNascimento.getText(), txtEstadoCivil.getText(), txtProfissao.getText(), txtEndereco.getText(), txtCep.getText(), txtSeguradora.getText(), txtApolice.getText(), txtItem.getText(), txtPlaca.getText(), txtChassi.getText(), txtRenavam.getText(), txtUtilizacao.getText());
+        DAO.cadastrarCliente(cliente);
+
+        
         
         dispose();
-        
-        
+
+
     }//GEN-LAST:event_JBincluirActionPerformed
 
     private void txtVigenciaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVigenciaFinalActionPerformed

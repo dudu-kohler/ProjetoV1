@@ -25,7 +25,7 @@ public class clientes {
     protected String vigenciaF;
     
 
-    public clientes(){ //String nome, String cpfCnpj, String email, String telefone, String endereco, String rg, String dataN, String estadoC, String profissao, String cep, String seguradora, String apolice, String item, String placa, String chassi, String renavam, String utilizacao, String vigenciaF) {
+    public clientes(String nome, String cpfCnpj, String email, String telefone, String endereco, String rg, String dataN, String estadoC, String profissao, String cep, String seguradora, String apolice, String item, String placa, String chassi, String renavam, String utilizacao){ //String nome, String cpfCnpj, String email, String telefone, String endereco, String rg, String dataN, String estadoC, String profissao, String cep, String seguradora, String apolice, String item, String placa, String chassi, String renavam, String utilizacao, String vigenciaF) {
         super();
         this.nome = nome;
         this.cpfCnpj = cpfCnpj;
@@ -47,9 +47,30 @@ public class clientes {
         this.vigenciaF = vigenciaF;
     }
 
-    public clientes(clientes clientes) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public clientes() {
+            super();
+        this.nome = nome;
+        this.cpfCnpj = cpfCnpj;
+        this.email = email;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.rg = rg;
+        this.dataN = dataN;
+        this.estadoC = estadoC;
+        this.profissao = profissao;
+        this.cep = cep;
+        this.seguradora = seguradora;
+        this.apolice = apolice;
+        this.item = item;
+        this.placa = placa;
+        this.chassi = chassi;
+        this.renavam = renavam;
+        this.utilizacao = utilizacao;
+        this.vigenciaF = vigenciaF;
+
     }
+
+    
 
     public String getNome() {
         return nome;

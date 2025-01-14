@@ -9,19 +9,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.usuario;
-
+import view.InterfacePrincipal;
 /**
  *
  * @author eduardo
  */
 public class dao {
-
+clientes cliente = null;
     private static final String CADASTRAR_CLIENTE = "INSERT INTO clientes (nome, cpfCnpj, email, telefone, endereco, rg, dataN, estadoC, profissao, cep, seguradora, apolice, item, placa, chassi, renavam, utilizacao, vigenciaF) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String CONSULTAR_CLIENTE = "SELECT * FROM clientes WHERE nome = ?";
     private static final String ALTERAR_CLIENTE = "UPDATE clientes SET cpfCnpj = ?, email = ?, telefone = ?, endereco = ?, rg = ?, dataN = ?, estadoC = ?, profissao = ?, cep = ?, seguradora = ?, apolice = ?, item = ?, placa = ?, chassi = ?, renavam = ?, utilizacao = ?, vigenciaF = ? WHERE nome = ?";
     private static final String EXCLUIR_CLIENTE = "DELETE FROM clientes WHERE nome = ?";
     private static final String LISTAR_CLIENTES = "SELECT * FROM clientes";
     private static final String CONSULTAR_USUARIO = "SELECT usuario, senha FROM usuario WHERE usuario = ? AND senha = ?";
+    public Iterable<dao> listarClientes;
 
     public dao() {
     }
@@ -140,9 +141,7 @@ public class dao {
                         resultSet.getString("placa"),
                         resultSet.getString("chassi"),
                         resultSet.getString("renavam"),
-                        resultSet.getString("utilizacao"),
-                        resultSet.getString("vigenciaF")
-                );
+                        resultSet.getString("utilizacao"));
                 listaClientes.add(cliente);
             }
 
@@ -158,7 +157,7 @@ public class dao {
      * Método para consultar um cliente pelo nome.
      */
     public clientes consultarCliente() {
-        clientes cliente = null;
+       
         String nome = null;
         try (Connection connection = conexao.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(CONSULTAR_CLIENTE)) {
@@ -166,26 +165,23 @@ public class dao {
             preparedStatement.setString(1, nome);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    cliente = new clientes(
-                            resultSet.getString("nome"),
-                            resultSet.getString("cpfCnpj"),
-                            resultSet.getString("email"),
-                            resultSet.getString("telefone"),
-                            resultSet.getString("endereco"),
-                            resultSet.getString("rg"),
-                            resultSet.getString("dataN"),
-                            resultSet.getString("estadoC"),
-                            resultSet.getString("profissao"),
-                            resultSet.getString("cep"),
-                            resultSet.getString("seguradora"),
-                            resultSet.getString("apolice"),
-                            resultSet.getString("item"),
-                            resultSet.getString("placa"),
-                            resultSet.getString("chassi"),
-                            resultSet.getString("renavam"),
-                            resultSet.getString("utilizacao"),
-                            resultSet.getString("vigenciaF")
-                    );
+                            resultSet.getString("nome");
+                            resultSet.getString("cpfCnpj");
+                            resultSet.getString("email");
+                            resultSet.getString("telefone");
+                            resultSet.getString("endereco");
+                            resultSet.getString("rg");
+                            resultSet.getString("dataN");
+                            resultSet.getString("estadoC");
+                            resultSet.getString("profissao");
+                            resultSet.getString("cep");
+                            resultSet.getString("seguradora");
+                            resultSet.getString("apolice");
+                            resultSet.getString("item");
+                            resultSet.getString("placa");
+                            resultSet.getString("chassi");
+                            resultSet.getString("renavam");
+                            resultSet.getString("utilizacao");
                 }
             }
 

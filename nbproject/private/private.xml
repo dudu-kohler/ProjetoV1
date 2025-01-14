@@ -5,8 +5,10 @@
         <group>
             <file>file:/C:/Users/eduardo/Documents/NetBeansProjects/a/src/dao/dao.java</file>
             <file>file:/C:/Users/eduardo/Documents/NetBeansProjects/a/src/controller/conexao.java</file>
-            <file>file:/C:/Users/eduardo/Documents/NetBeansProjects/a/src/dao/BD.java</file>
+            <file>file:/C:/Users/eduardo/Documents/NetBeansProjects/a/src/model/modeloTabela.java</file>
+            <file>file:/C:/Users/eduardo/Documents/NetBeansProjects/a/src/controller/criptografia.java</file>
             <file>file:/C:/Users/eduardo/Documents/NetBeansProjects/a/src/view/InterfaceCadastrar.java</file>
+            <file>file:/C:/Users/eduardo/Documents/NetBeansProjects/a/src/view/InterfaceLoginn.java</file>
             <file>file:/C:/Users/eduardo/Documents/NetBeansProjects/a/src/view/InterfacePrincipal.java</file>
             <file>file:/C:/Users/eduardo/Documents/NetBeansProjects/a/src/model/clientes.java</file>
         </group>

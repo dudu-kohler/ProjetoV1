@@ -2,6 +2,8 @@ package view;
 
 import dao.dao;
 import java.awt.Dimension;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,14 +11,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 import model.clientes;
 import view.InterfaceCadastrar;
-
+import model.usuario;
 /**
  *
  * @author eduardo
  */
 public class InterfacePrincipal extends javax.swing.JFrame {
+
     dao DAO = new dao();
     clientes cliente = new clientes();
     private ArrayList<clientes> clientes;
@@ -108,6 +112,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         txtVigenciaFinalB = new javax.swing.JTextField();
         Bvoltar = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
+        btnBusca = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         jScrollPane1.setViewportView(jTextPane1);
@@ -508,18 +513,28 @@ public class InterfacePrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        btnBusca.setText("Pesquisar");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jbCadastrar)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtPesquisar)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
@@ -534,7 +549,8 @@ public class InterfacePrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBusca))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -571,13 +587,8 @@ public class InterfacePrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
-        dao DAO = new dao();
-        try {
-            DAO.consultarCliente();
-        } catch (Exception ex) {
-            Logger.getLogger(InterfacePrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        
+        
 
     }//GEN-LAST:event_txtPesquisaActionPerformed
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {
@@ -596,7 +607,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
     private void txtRenavamBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRenavamBActionPerformed
-      //  clientes.getRenavam();
+        //  clientes.getRenavam();
     }//GEN-LAST:event_txtRenavamBActionPerformed
 
     private void txtChassiBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChassiBActionPerformed
@@ -673,6 +684,31 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         setLocation(350, 0);
     }//GEN-LAST:event_BvoltarActionPerformed
 
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        txtPesquisa.addKeyListener(new KeyAdapter() {
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // Pega o texto digitado pelo usuário
+        String nomeFiltro = txtPesquisa.getText().trim();
+
+        // Aplica o filtro
+        DefaultTableModel modelo = (DefaultTableModel) tabelaClientes.getModel();
+        modelo.setRowCount(0); // Limpa a tabela
+
+        for (dao DAO : DAO.listarClientes) {
+            if (cliente.getNome().toLowerCase().contains(nomeFiltro.toLowerCase())) {
+                modelo.addRow(new Object[] { cliente.getNome(), cliente.getCpfCnpj(), cliente.getEmail() });
+            }
+        }
+    }
+});
+
+        
+        
+        
+        
+    }//GEN-LAST:event_btnBuscaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -716,6 +752,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Bvoltar;
+    private javax.swing.JButton btnBusca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
